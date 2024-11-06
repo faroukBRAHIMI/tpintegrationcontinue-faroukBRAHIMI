@@ -18,8 +18,14 @@ jobs:              # Defines one or more jobs that will run in the workflow
           distribution: 'corretto' # See 'Supported distributions' for available options
           java-version: '21'
 
-      - name: Display echo string
-        run: echo "hello world"
+      - name: Check Sonar Token
+        run: |
+          if [ -n "${{ secrets.SONAR_TOKEN }}" ]; then
+            echo "SONAR_TOKEN is set"
+            echo "First 4 characters of SONAR_TOKEN: ${${{ secrets.SONAR_TOKEN }}:0:4}****"
+          else
+            echo "SONAR_TOKEN is not set"
+          fi
 
       - name: Display secret
         run: echo  ${{ secrets.SONAR_TOKEN }}
