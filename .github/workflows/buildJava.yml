@@ -39,5 +39,5 @@ jobs:              # Defines one or more jobs that will run in the workflow
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
           -Dsonar.projectKey=$(echo ${{ github.repository }} | sed 's-/-_-') \
           -Dsonar.login=$SONAR_TOKEN \
-          -Dsonar.branch.name=${{ github.head_ref || 'main' }}
+          -Dsonar.branch.name='main'
 
