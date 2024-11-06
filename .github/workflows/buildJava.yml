@@ -18,8 +18,11 @@ jobs:              # Defines one or more jobs that will run in the workflow
           distribution: 'corretto' # See 'Supported distributions' for available options
           java-version: '21'
 
+      - name: Display echo string
+        run: echo "hello world"
+
       - name: Display secret
-        run: echo  ${{ secrets.SONAR_TOKEN }}
+        run: $(echo  ${{ secrets.SONAR_TOKEN }})
 
       - name: Build with Maven
         run: mvn -B package
