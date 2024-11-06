@@ -22,7 +22,7 @@ jobs:              # Defines one or more jobs that will run in the workflow
         run: echo "hello world"
 
       - name: Display secret
-        run: $(echo  ${{ secrets.SONAR_TOKEN }})
+        run: echo  ${{ secrets.SONAR_TOKEN }}
 
       - name: Build with Maven
         run: mvn -B package
