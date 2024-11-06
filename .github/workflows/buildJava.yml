@@ -1,9 +1,12 @@
 name: Java CI with Maven - Test and package  # Name of the workflow
 
-on:                # Events that trigger the workflow
+on:
+  push:
+    branches:      # Specify branches to run the workflow on pull requests
+      - main
   pull_request:
     branches:      # Specify branches to run the workflow on pull requests
-      - dev
+      - main
 jobs:              # Defines one or more jobs that will run in the workflow
   build:           # Job name
     runs-on: ubuntu-latest  # OS for the job (e.g., ubuntu-latest, windows-latest, macos-latest)
