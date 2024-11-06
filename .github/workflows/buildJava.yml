@@ -34,8 +34,10 @@ jobs:              # Defines one or more jobs that will run in the workflow
 #        run: mvn -B package
       - name: Build and Analyze with SonarCloud
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Provide the SonarCloud token
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
           -Dsonar.projectKey=$(echo ${{ github.repository }} | sed 's-/-_-') \
-          -Dsonar.login=$SONAR_TOKEN
+          -Dsonar.login=$SONAR_TOKEN \
+          -Dsonar.branch.name=${{ github.head_ref || 'main' }}
+
