@@ -1,9 +1,9 @@
 name: Java CI with Maven - Test and package  # Name of the workflow
 
 on:
-  push:
-    branches:      # Specify branches to run the workflow on pull requests
-      - main
+#  push:
+#    branches:
+#      - main
   pull_request:
     branches:      # Specify branches to run the workflow on pull requests
       - main
