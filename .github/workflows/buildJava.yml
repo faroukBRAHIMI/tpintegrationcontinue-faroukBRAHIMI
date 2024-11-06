@@ -1,8 +1,11 @@
 name: Java CI with Maven - Test and package  # Name of the workflow
 
 on:
+#  push:
+#    branches:
+#      - main
   pull_request:
-    branches:
+    branches:      # Specify branches to run the workflow on pull requests
       - main
 jobs:              # Defines one or more jobs that will run in the workflow
   build:           # Job name
@@ -14,4 +17,4 @@ jobs:              # Defines one or more jobs that will run in the workflow
         with:
           distribution: 'corretto' # See 'Supported distributions' for available options
           java-version: '21'
-      - run: mvn –B package
+      - run: mvn -B package
