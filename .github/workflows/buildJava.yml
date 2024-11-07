@@ -17,4 +17,25 @@ jobs:              # Defines one or more jobs that will run in the workflow
         with:
           distribution: 'corretto' # See 'Supported distributions' for available options
           java-version: '21'
-      - run: mvn -B package
+
+#      - name: Check Sonar Token
+#        run: |
+#          if [ -n "${{ secrets.SONAR_TOKEN }}" ]; then
+#            echo "SONAR_TOKEN is set"
+#            echo "First 4 characters of SONAR_TOKEN: ${${{ secrets.SONAR_TOKEN }}:0:4}****"
+#          else
+#            echo "SONAR_TOKEN is not set"
+#          fi
+
+#      - name: Display secret
+#        run: echo  ${{ secrets.SONAR_TOKEN }}
+
+#      - name: Build with Maven
+#        run: mvn -B package
+
+      - name: Build and Analyze with SonarCloud
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          -Dsonar.projectKey=$(echo ${{ github.repository }} | sed 's-/-_-')
+
